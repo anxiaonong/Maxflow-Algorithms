@@ -47,8 +47,15 @@ def MaxFlow(C, s, t):
          push(s, v)
  
      p = 0
-     while p < len(nodelist):
-         u = nodelist[p]
+     while p < len(nodelist): #selection
+         u=0
+         heights=copy.deepcopy(height[1:n-1]) #find highest height 
+         heights.sort()
+         for d in range(1,len(height)-1):
+             if height[d]==heights[-1]:
+                 u = nodelist[d-1]
+                 break
+
          old_height = height[u]
          discharge(u)
          if height[u] > old_height:
